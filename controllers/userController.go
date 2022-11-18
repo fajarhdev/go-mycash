@@ -6,8 +6,17 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// signup
 func UserCreate(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
-		"message":"Hello",
+		"message":"Create user",
+	})
+}
+
+
+// login
+func GetUser(c *gin.Context){
+	c.JSON(http.StatusOK, gin.H{
+		"message":"Get user",
 	})
 }

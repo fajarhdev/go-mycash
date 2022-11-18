@@ -13,6 +13,9 @@ func init() {
 func main() {
 	r := gin.Default()
 
-	r.GET("/", controllers.UserCreate)
+	// user
+	r.POST("/signup", controllers.UserCreate)
+	r.GET("/login", controllers.GetUser)
+	
 	r.Run()
 }
