@@ -17,5 +17,7 @@ func main() {
 	r.POST("/signup", controllers.UserCreate)
 	r.GET("/login", controllers.GetUser)
 	
-	r.Run()
+	// income
+	r.POST("/addincome", controllers.PostIncome)
+	r.Run(":3000")
 }
