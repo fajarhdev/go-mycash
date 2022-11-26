@@ -1,18 +1,25 @@
 package main
 
 import (
-	"github.com/fajarhdev/go-mycash/controllers"
-	"github.com/fajarhdev/go-mycash/initializers"
-	"github.com/gin-gonic/gin"
+	"fmt"
+
+	config "go-api-sql/Config"
+	models "go-api-sql/Models"
+	routes "go-api-sql/Routes"
+
+	"github.com/jinzhu/gorm"
 )
 
-func init() {
-	initializers.LoadEnvVariables()
-}
+var err error
 
 func main() {
-	r := gin.Default()
-
-	r.GET("/", controllers.UserCreate)
-	r.Run()
+	config.DB, err = gorm.Open("mysql", config.DbURL(config.BuildDBConfig()))
+	if err != nil {
+		fmt.Println("Status:", err)
+	}
+	defer config.DB.Close()
+	config.DB.AutoMigrate(&models.User{})
+	r := routes.SetupRouter()
+	//running
+	r.Run("localhost:4040")
 }
