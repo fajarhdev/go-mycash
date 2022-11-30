@@ -14,5 +14,5 @@ type User struct {
 
 func (b *User) TableName() string {
 	// Input table name here, if the table doesn't exist, it will create new one
-	return "user_data"
+	return "user_data_new"
 }
