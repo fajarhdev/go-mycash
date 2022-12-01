@@ -19,6 +19,7 @@ func InitRouter() *gin.Engine{
 	income := r.Group("/income")
 	{
 		income.POST("/", controllers.PostIncome)
+		income.GET("/", controllers.GetIncome)
 	}
 	return r
 }

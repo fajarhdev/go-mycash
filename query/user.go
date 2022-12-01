@@ -9,7 +9,7 @@ import (
 
 //GetAllUsers Fetch all user data
 func GetAllUsers(user *[]models.User) {
-	initializers.DB.Find(user)
+	initializers.DB.Find(&user)
 	return
 }
 

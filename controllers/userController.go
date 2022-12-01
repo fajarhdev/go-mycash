@@ -1,10 +1,9 @@
 package controllers
 
 import (
-	"fmt"
+	// "fmt"
 	"net/http"
 
-	// "github.com/fajarhdev/go-mycash/initializers"
 	"github.com/fajarhdev/go-mycash/models"
 	"github.com/fajarhdev/go-mycash/query"
 	"github.com/gin-gonic/gin"
@@ -12,22 +11,11 @@ import (
 
 func GetUsers(c *gin.Context) {
 	var user []models.User
-	// initializers.DB.Find(&user)
-
-	// if err := c.BindJSON(&user); err != nil{
-	// 	return
-	// }
 
 	query.GetAllUsers(&user)
-	// fmt.Println("atau malah sini")
-	// if err != nil {
-		// fmt.Println("masuk sini")
-		// c.AbortWithStatus(http.StatusNotFound)
-	// } else {
-		// fmt.Println("atau sini")
-		c.JSON(http.StatusOK, user)
-		fmt.Println(user)
-	// }
+
+	c.JSON(http.StatusOK, user)
+	// fmt.Println(user)
 }
 
 func CreateUser(c *gin.Context) {
@@ -37,19 +25,9 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	// if err := query.CreateUser(&user); err != nil {
-	// 	c.AbortWithStatus(http.StatusNotFound)
-	// 	return
-	// }
-
 	query.CreateUser(user)
 
-	// if err != nil {
-	// 	c.AbortWithStatus(http.StatusNotFound)
-	// } else {
-		c.JSON(http.StatusCreated, user)
-		// fmt.Println(user)
-	// }
+	c.JSON(http.StatusCreated, user)
 }
 
 func GetUserByID(c *gin.Context) {
@@ -97,10 +75,4 @@ func DeleteUser(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{
 		"status": http.StatusGone,
 	})
-	// err := query.DeleteUser(&user, id)
-	// if err != nil {
-	// 	c.AbortWithStatus(http.StatusNotFound)
-	// } else {
-	// 	c.JSON(http.StatusOK, gin.H{"id" + id: "is deleted!"})
-	// }
 }

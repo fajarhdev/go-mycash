@@ -1,11 +1,10 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
-	"github.com/fajarhdev/go-mycash/initializers"
 	"github.com/fajarhdev/go-mycash/models"
+	"github.com/fajarhdev/go-mycash/query"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,25 +12,21 @@ import (
 func PostIncome(c *gin.Context) {
 
 	var incomeBody models.Income
-
-	c.BindJSON(&incomeBody)
-	post := models.Income{Amount: incomeBody.Amount}
-	result := initializers.DB.Create(&post)
-
-	fmt.Println(incomeBody)
-	if result != nil {
-		fmt.Println(result.Error)
-	}else {
-		fmt.Println(result.RowsAffected)
+	if err := c.BindJSON(&incomeBody); err != nil {
+		return
 	}
-	c.JSON(http.StatusOK, gin.H{
-		"status": http.StatusCreated,
-		"income": post,
-	})
+
+	query.AddIncome(incomeBody)
+
+	c.JSON(http.StatusCreated, incomeBody)
 }
 
 // get income
-func getIncome (c *gin.Context){
-	
+func GetIncome (c *gin.Context){
+	var income []models.Income
+
+	query.GetAllIncome(&income)
+
+	c.JSON(http.StatusOK, income)
 }
 
