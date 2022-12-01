@@ -12,14 +12,13 @@ import (
 // insert income
 func PostIncome(c *gin.Context) {
 
-	var incomeBody struct {
-		Amount int64
-	}
+	var incomeBody models.Income
 
-	c.Bind(&incomeBody)
+	c.BindJSON(&incomeBody)
 	post := models.Income{Amount: incomeBody.Amount}
 	result := initializers.DB.Create(&post)
 
+	fmt.Println(incomeBody)
 	if result != nil {
 		fmt.Println(result.Error)
 	}else {
@@ -27,7 +26,7 @@ func PostIncome(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, gin.H{
 		"status": http.StatusCreated,
-		"income":post,
+		"income": post,
 	})
 }
 

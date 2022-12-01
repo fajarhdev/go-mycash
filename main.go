@@ -1,23 +1,18 @@
 package main
 
 import (
-	"github.com/fajarhdev/go-mycash/controllers"
 	"github.com/fajarhdev/go-mycash/initializers"
-	"github.com/gin-gonic/gin"
+	"github.com/fajarhdev/go-mycash/routes"
+	"github.com/fajarhdev/go-mycash/migrate"
 )
 
 func init() {
 	initializers.LoadEnvVariables()
+	initializers.ConnectToDB()
+	migrate.Migrate()
 }
 
 func main() {
-	r := gin.Default()
-
-	// user
-	r.POST("/signup", controllers.UserCreate)
-	r.GET("/login", controllers.GetUser)
-	
-	// income
-	r.POST("/addincome", controllers.PostIncome)
+	r := routes.InitRouter()
 	r.Run(":3000")
 }

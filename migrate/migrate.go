@@ -1,4 +1,4 @@
-package main
+package migrate
 
 import (
 	"github.com/fajarhdev/go-mycash/initializers"
@@ -10,7 +10,7 @@ func init() {
 	initializers.ConnectToDB()
 }
 
-func main(){
+func Migrate(){
 	initializers.DB.AutoMigrate(&models.Article{})
 	initializers.DB.AutoMigrate(&models.Income{})
 	initializers.DB.AutoMigrate(&models.Expense{})
