@@ -1,7 +1,6 @@
 package query
 
 import (
-
 	"github.com/fajarhdev/go-mycash/initializers"
 	"github.com/fajarhdev/go-mycash/models"
 )
@@ -9,6 +8,11 @@ import (
 //GetAllUsers Fetch all user data
 func GetAllUsers(user *[]models.User) {
 	initializers.DB.Find(&user)
+}
+
+// login user find
+func FindUser(user *[]models.User, email string ) {
+	initializers.DB.Where("email = ?", email).First(&user)
 }
 
 //CreateUser ... Insert New data

@@ -4,6 +4,7 @@ import (
 	// "fmt"
 	"net/http"
 
+	// "github.com/fajarhdev/go-mycash/initializers"
 	"github.com/fajarhdev/go-mycash/models"
 	"github.com/fajarhdev/go-mycash/query"
 	"github.com/gin-gonic/gin"
@@ -16,6 +17,24 @@ func GetUsers(c *gin.Context) {
 
 	c.JSON(http.StatusOK, user)
 	// fmt.Println(user)
+}
+
+func FindUser(c *gin.Context){
+	var userModel []models.User
+
+	var user struct {
+		Email 		string `json:"email"`
+		Password 	string `json:"password"`
+	}
+
+	if err := c.BindJSON(&user); err != nil {
+		return
+	}
+
+	// initializers.DB.Where("email = ?", user.Email).First(&userModel)
+	query.FindUser(&userModel, user.Email)
+	// fmt.Println(user.Email)
+	c.JSON(http.StatusFound, &userModel)
 }
 
 func CreateUser(c *gin.Context) {

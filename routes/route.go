@@ -9,17 +9,18 @@ func InitRouter() *gin.Engine{
 	r := gin.Default()
 	user := r.Group("/user")
 	{
-		user.GET("/", controllers.GetUsers)
-		user.POST("/", controllers.CreateUser)
-		user.GET("/:id", controllers.GetUserByID)
-		user.PUT("/:id", controllers.UpdateUser)
-		user.DELETE("/:id", controllers.DeleteUser)
+		user.GET("/", controllers.GetUsers)			// for fetch all user
+		user.POST("/", controllers.CreateUser)		// for register
+		user.POST("/login", controllers.FindUser)	// for login
+		user.GET("/:id", controllers.GetUserByID)	// for select spesific user with id
+		user.PUT("/:id", controllers.UpdateUser)	// for update user 
+		user.DELETE("/:id", controllers.DeleteUser)	// fpr deletting user
 	}
 	
 	income := r.Group("/income")
 	{
-		income.POST("/", controllers.PostIncome)
-		income.GET("/", controllers.GetIncome)
+		income.POST("/", controllers.PostIncome)	// for add income transaction
+		income.GET("/", controllers.GetIncome)		// for fetch all the income transaction
 	}
 	return r
 }
