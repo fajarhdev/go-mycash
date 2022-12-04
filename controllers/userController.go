@@ -32,9 +32,20 @@ func FindUser(c *gin.Context){
 	}
 
 	// initializers.DB.Where("email = ?", user.Email).First(&userModel)
-	query.FindUser(&userModel, user.Email)
+	result := query.FindUser(&userModel, user.Email)
+	if result == 1 {
+		c.JSON(http.StatusFound, gin.H{
+			"status":http.StatusOK,
+			"user":&userModel,
+		})
+	} else {
+		c.JSON(http.StatusForbidden, gin.H{
+			"status":http.StatusForbidden,
+			"message":"Your account is not available",
+		})
+	}
+
 	// fmt.Println(user.Email)
-	c.JSON(http.StatusFound, &userModel)
 }
 
 func CreateUser(c *gin.Context) {
