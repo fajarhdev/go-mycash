@@ -6,8 +6,8 @@ import (
 
 type Transaction struct {
 	gorm.Model
-	UserID 		int64
-	TotalAmount int64
-	Status 		string
-	User 		User
+	TotalAmount int64	`json:"totalamount"`
+	Status 		string	`json:"status"`
+	UserID 		int64	`json:"userid"`
+	User 		User	`json:"user" gorm:"foreignKey:UserID"`
 }

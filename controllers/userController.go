@@ -19,6 +19,7 @@ func GetUsers(c *gin.Context) {
 	// fmt.Println(user)
 }
 
+// for login
 func FindUser(c *gin.Context){
 	var userModel []models.User
 
@@ -37,6 +38,7 @@ func FindUser(c *gin.Context){
 		c.JSON(http.StatusFound, gin.H{
 			"status":http.StatusOK,
 			"user":&userModel,
+			"message":"authorized",
 		})
 	} else {
 		c.JSON(http.StatusForbidden, gin.H{

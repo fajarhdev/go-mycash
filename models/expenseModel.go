@@ -4,7 +4,7 @@ import "gorm.io/gorm"
 
 type Expense struct {
 	gorm.Model
-	UserID 	int64
-	Amount 	int64
-	User 	User
+	Amount 	int64	`json:"amount"`
+	UserID 	int64	`json:"userid"`
+	User 	User	`json:"user" gorm:"foreignKey:UserID"`
 }

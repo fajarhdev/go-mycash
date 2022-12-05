@@ -9,8 +9,13 @@ func AddIncome(income models.Income) {
 	initializers.DB.Create(&income)
 }
 
-func GetAllIncome(income *[]models.Income) {
-	initializers.DB.Find(&income)
+func GetAllIncome(income *[]models.Income, user *models.User) {
+	// initializers.DB.Find(&income)
+	initializers.DB.Model(&income).Association("userid").Find(&user)
+}
+
+func GetIncomesByUser(income *[]models.Income, id int) {
+	initializers.DB.Where("id <> ?", id).Find((&income))
 }
 
 func UpdateIncome(income *models.Income, updateIncome *models.Income) {
