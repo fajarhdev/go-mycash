@@ -20,6 +20,7 @@ func AddExpense(c *gin.Context) {
 	c.JSON(http.StatusCreated, gin.H{
 		"message":"Created",
 		"status":http.StatusCreated,
+		"data":expense,
 	})
 }
 
@@ -28,5 +29,8 @@ func GetAllExpense(c *gin.Context){
 
 	query.GetAllExpenses(&expense)
 
-	c.JSON(http.StatusFound, expense)
+	c.JSON(http.StatusFound, gin.H{
+		"status":http.StatusOK,
+		"data":expense,
+	})
 }

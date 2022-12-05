@@ -1,16 +1,13 @@
 package models
 
 import (
-	"time"
-
-	// "gorm.io/gorm"
+	"gorm.io/gorm"
 )
 
 type User struct {
-	CreatedAt   time.Time	`json:"createdat"`
-  	UpdatedAt   time.Time	`json:"updatedat"`
+	gorm.Model
 	Fullname 	string 		`json:"fullname"`
-	Age 		int16 		`json:"age"`		
+	Age 		string 		`json:"age"`		
 	PhoneNumber string 		`json:"phonenumber"`
 	Email 		string 		`json:"email"`	
 	Password 	string		`json:"password"`	

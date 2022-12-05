@@ -26,7 +26,7 @@ func InitRouter() *gin.Engine{
 	expense := r.Group("/expense")
 	{
 		expense.POST("/", controllers.AddExpense)
-		
+		expense.GET("/", controllers.GetAllExpense)
 	}
 	return r
 }
