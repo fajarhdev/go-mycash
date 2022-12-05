@@ -13,3 +13,8 @@ func GetExpensesByUser(expense *[]models.Expense, id int) {
 	initializers.DB.Where("id <> ?", id).Find((&expense))
 }
 
+func GetAllExpenses(expense *[]models.Expense){
+	initializers.DB.Find(&expense)
+}
+
+

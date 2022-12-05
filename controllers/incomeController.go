@@ -1,7 +1,6 @@
 package controllers
 
 import (
-	"fmt"
 	"net/http"
 
 	"github.com/fajarhdev/go-mycash/models"
@@ -30,13 +29,13 @@ func GetIncome (c *gin.Context){
 	// 	Id int64 `json:"id"`
 	// }
 	
-	var user models.User
+	// var user models.User
 
-	c.BindJSON(&user)
+	// c.BindJSON(&user)
 
-	query.GetAllIncome(&income, &user)
+	query.GetAllIncome(&income)
 
 	c.JSON(http.StatusOK, income)
-	fmt.Println(user)
+	// fmt.Println(user)
 }
 
