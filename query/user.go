@@ -11,7 +11,7 @@ func GetAllUsers(user *[]models.User) {
 }
 
 // login user find
-func FindUser(user *[]models.User, email string ) int64 {
+func FindUser(user *models.User, email string ) int64 {
 	results := initializers.DB.Where("email = ?", email).First(&user)
 	return results.RowsAffected
 }

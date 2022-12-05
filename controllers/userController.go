@@ -21,7 +21,7 @@ func GetUsers(c *gin.Context) {
 
 // for login
 func FindUser(c *gin.Context){
-	var userModel []models.User
+	var userModel models.User
 
 	var user struct {
 		Email 		string `json:"email"`
@@ -35,10 +35,10 @@ func FindUser(c *gin.Context){
 	// initializers.DB.Where("email = ?", user.Email).First(&userModel)
 	result := query.FindUser(&userModel, user.Email)
 	if result == 1 {
-		c.JSON(http.StatusFound, gin.H{
+		c.JSON(http.StatusOK, gin.H{
 			"status":http.StatusOK,
-			"user":&userModel,
 			"message":"authorized",
+			"data":&userModel,
 		})
 	} else {
 		c.JSON(http.StatusForbidden, gin.H{
