@@ -1,27 +1,27 @@
 package query
 
 import (
+
 	"github.com/fajarhdev/go-mycash/initializers"
 	"github.com/fajarhdev/go-mycash/models"
 )
 
-func AddIncome(income models.Income) {
-	initializers.DB.Create(&income)
+func AddIncome(income *models.Income) {
+	initializers.DB.Omit("User").Create(&income)
+
 }
 
-func GetAllIncome(income *[]models.Income) {
-	initializers.DB.Find(&income)
-	// initializers.DB.Model(&income).Association("userid").Find(&user)
+func GetAllIncome(income *[]models.Income, id string) {
+	initializers.DB.Where("user_id = ?", id).Joins("User").Find(&income)
 }
 
-func GetIncomesByUser(income *[]models.Income, id int) {
-	initializers.DB.Where("id <> ?", id).Find((&income))
-}
-
-func UpdateIncome(income *models.Income, updateIncome *models.Income) {
+func UpdateIncome(income *models.Income, updateIncome models.Income, id string) {
 	// initializers.DB.Model(&income).Update(&updateIncome)
+	initializers.DB.Model(&income).Where("id = ?", id).Updates(&updateIncome)
 }
 
-func DeleteIncome(){
-	
+// delete specific income
+func DeleteIncome(income *models.Income, id string) (err error){
+	initializers.DB.Delete(&income, id)
+	return
 }

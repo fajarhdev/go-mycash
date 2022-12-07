@@ -11,9 +11,9 @@ func init() {
 }
 
 func Migrate(){
-	initializers.DB.AutoMigrate(&models.Article{})
+	initializers.DB.AutoMigrate(&models.User{})
 	initializers.DB.AutoMigrate(&models.Income{})
 	initializers.DB.AutoMigrate(&models.Expense{})
 	initializers.DB.AutoMigrate(&models.Transaction{})
-	initializers.DB.AutoMigrate(&models.User{})
+	initializers.DB.AutoMigrate(&models.Article{})
 }

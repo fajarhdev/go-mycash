@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// adding the expenses
 func AddExpense(c *gin.Context) {
 	var expense models.Expense
 
@@ -15,22 +16,59 @@ func AddExpense(c *gin.Context) {
 		return
 	}
 
-	query.AddExpense(expense)
+	query.AddExpense(&expense)
 	
 	c.JSON(http.StatusCreated, gin.H{
-		"message":"Created",
+		"message":"Successfuly created income",
 		"status":http.StatusCreated,
 		"data":expense,
 	})
 }
 
+
+// fetch all of the expenses transaction by spesific user
 func GetAllExpense(c *gin.Context){
 	var expense []models.Expense
 
-	query.GetAllExpenses(&expense)
+	id := c.Params.ByName("id")
+
+	query.GetAllExpense(&expense, id)
 
 	c.JSON(http.StatusFound, gin.H{
 		"status":http.StatusOK,
+		"message":"Found expenses data",
 		"data":expense,
+	})
+}
+
+func UpdateExpense(c *gin.Context)  {
+	var expense models.Expense
+	var expenseBody models.Expense
+
+	if err := c.BindJSON(&expenseBody); err != nil {
+		return
+	}
+
+	id := c.Params.ByName("id")
+
+	query.UpdateExpense(&expense, expenseBody, id)
+
+	c.JSON(http.StatusOK, gin.H{
+		"status": http.StatusOK,
+		"message":"Success updating",
+		"data":expenseBody,
+	})
+}
+
+func DeleteExpense(c *gin.Context)  {
+	var expense models.Expense
+	
+	id := c.Params.ByName("id")
+
+	query.DeleteExpense(&expense, id)
+
+	c.JSON(http.StatusOK, gin.H{
+		"status":http.StatusOK,
+		"message":"Income has successfuly deleted",
 	})
 }

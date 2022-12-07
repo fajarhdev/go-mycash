@@ -59,7 +59,11 @@ func CreateUser(c *gin.Context) {
 
 	query.CreateUser(user)
 
-	c.JSON(http.StatusCreated, user)
+	c.JSON(http.StatusCreated, gin.H{
+		"status":http.StatusCreated,
+		"message":"User successfully created",
+		"user":user,
+	})
 }
 
 func GetUserByID(c *gin.Context) {
