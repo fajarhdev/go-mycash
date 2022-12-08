@@ -35,7 +35,7 @@ func InitRouter() *gin.Engine{
 
 	transaction := r.Group("/trans")
 	{
-		transaction.GET("/:id", controllers.Transaction)
+		transaction.POST("/:id", controllers.Transaction)
 	}
 	return r
 }

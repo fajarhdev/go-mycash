@@ -20,3 +20,14 @@ func Expense(expense *models.Expense, id int) {
 func PostTransaction(transaction models.Transaction) {
 	initializers.DB.Omit("User").Create(&transaction)
 }
+
+// update transaction if the transaction is exist
+func UpdateTransaction(transaction *models.Transaction, updateTransaction *models.Transaction, id int)  {
+	initializers.DB.Model(&transaction).Where("user_id = ?", id).Updates(&updateTransaction)
+}
+
+// fetch all transaction db with specific user
+func GetAllTransactionByUser(transaction *models.Transaction, id int) (row int64) {
+	result := initializers.DB.Where("user_id = ?", id).First(&transaction)
+	return result.RowsAffected
+}

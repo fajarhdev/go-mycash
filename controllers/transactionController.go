@@ -13,8 +13,7 @@ func Transaction(c *gin.Context) {
 	id, _ := strconv.Atoi(c.Params.ByName("id"))
 	var income models.Income
 	var expense models.Expense
-	
-	
+	var transactions models.Transaction
 
 	// get sum income
 	query.Income(&income, id)
@@ -44,8 +43,15 @@ func Transaction(c *gin.Context) {
 		UserID: id,
 	}
 
+	// fmt.Println(query.GetAllTransactionByUser(&transactions, id))
+
 	// post it to the db
-	query.PostTransaction(transaction)
+	if result := query.GetAllTransactionByUser(&transactions, id); result > 0 {
+		query.UpdateTransaction(&transactions, &transaction, id)
+	}else {
+		query.PostTransaction(transaction)
+		// fmt.Println("LOHHH KOK KESINIIII")
+	}
 
 	c.JSON(http.StatusOK, gin.H{
 		"status": http.StatusOK,
