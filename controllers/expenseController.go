@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/fajarhdev/go-mycash/models"
 	"github.com/fajarhdev/go-mycash/query"
@@ -29,8 +30,8 @@ func AddExpense(c *gin.Context) {
 // fetch all of the expenses transaction by spesific user
 func GetAllExpense(c *gin.Context){
 	var expense []models.Expense
-
-	id := c.Params.ByName("id")
+	
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
 	query.GetAllExpense(&expense, id)
 
@@ -44,12 +45,13 @@ func GetAllExpense(c *gin.Context){
 func UpdateExpense(c *gin.Context)  {
 	var expense models.Expense
 	var expenseBody models.Expense
+	
 
 	if err := c.BindJSON(&expenseBody); err != nil {
 		return
 	}
 
-	id := c.Params.ByName("id")
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
 	query.UpdateExpense(&expense, expenseBody, id)
 
@@ -63,7 +65,7 @@ func UpdateExpense(c *gin.Context)  {
 func DeleteExpense(c *gin.Context)  {
 	var expense models.Expense
 	
-	id := c.Params.ByName("id")
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
 	query.DeleteExpense(&expense, id)
 

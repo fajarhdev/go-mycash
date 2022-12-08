@@ -10,16 +10,16 @@ func AddExpense(expense *models.Expense) {
 
 }
 
-func GetAllExpense(expense *[]models.Expense, id string) {
+func GetAllExpense(expense *[]models.Expense, id int) {
 	initializers.DB.Where("user_id = ?", id).Joins("User").Find(&expense)
 }
 
-func UpdateExpense(expense *models.Expense, updateExpense models.Expense, id string) {
+func UpdateExpense(expense *models.Expense, updateExpense models.Expense, id int) {
 	initializers.DB.Model(&expense).Where("id = ?", id).Updates(&updateExpense)
 }
 
 // delete specific expense
-func DeleteExpense(expense *models.Expense, id string) (err error){
+func DeleteExpense(expense *models.Expense, id int) (err error){
 	initializers.DB.Delete(&expense, id)
 	return
 }

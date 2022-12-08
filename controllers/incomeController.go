@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/fajarhdev/go-mycash/models"
 	"github.com/fajarhdev/go-mycash/query"
@@ -29,7 +30,7 @@ func PostIncome(c *gin.Context) {
 func GetIncome (c *gin.Context){
 	var income []models.Income
 
-	id := c.Params.ByName("id")
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
 	// var user models.User
 
@@ -53,7 +54,7 @@ func UpdateIncome (c *gin.Context){
 		return
 	}
 
-	id := c.Params.ByName("id")
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
 	query.UpdateIncome(&income, incomeBody, id)
 
@@ -68,7 +69,7 @@ func UpdateIncome (c *gin.Context){
 func DeleteIncome(c *gin.Context)  {
 	var income models.Income
 	
-	id := c.Params.ByName("id")
+	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
 	query.DeleteIncome(&income, id)
 
