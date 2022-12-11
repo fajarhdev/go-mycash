@@ -19,6 +19,8 @@ func PostIncome(c *gin.Context) {
 
 	query.AddIncome(&incomeBody)
 
+	Transaction(c)
+
 	c.JSON(http.StatusCreated, gin.H{
 		"status": http.StatusOK,
 		"message": "Successfuly created income",
@@ -58,6 +60,8 @@ func UpdateIncome (c *gin.Context){
 
 	query.UpdateIncome(&income, incomeBody, id)
 
+	Transaction(c)
+	
 	c.JSON(http.StatusOK, gin.H{
 		"status": http.StatusOK,
 		"message":"Success updating",
@@ -72,6 +76,8 @@ func DeleteIncome(c *gin.Context)  {
 	id, _ := strconv.Atoi(c.Params.ByName("id"))
 
 	query.DeleteIncome(&income, id)
+
+	Transaction(c)
 
 	c.JSON(http.StatusOK, gin.H{
 		"status":http.StatusOK,

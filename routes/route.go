@@ -19,7 +19,7 @@ func InitRouter() *gin.Engine{
 	
 	income := r.Group("/income")
 	{
-		income.POST("/", controllers.PostIncome)	// for add income transaction
+		income.POST("/:id", controllers.PostIncome)	// for add income transaction
 		income.GET("/:id", controllers.GetIncome)		// for fetch all the income transaction by specific user id
 		income.PUT("/:id", controllers.UpdateIncome)	// for updating specific income transaction
 		income.DELETE("/:id", controllers.DeleteIncome)
@@ -27,7 +27,7 @@ func InitRouter() *gin.Engine{
 
 	expense := r.Group("/expense")
 	{
-		expense.POST("/", controllers.AddExpense)
+		expense.POST("/:id", controllers.AddExpense)
 		expense.GET("/:id", controllers.GetAllExpense)
 		expense.PUT("/:id", controllers.UpdateExpense)
 		expense.DELETE("/:id", controllers.DeleteExpense)
