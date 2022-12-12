@@ -37,7 +37,7 @@ func GetAllExpense(c *gin.Context){
 
 	query.GetAllExpense(&expense, id)
 
-	c.JSON(http.StatusFound, gin.H{
+	c.JSON(http.StatusOK, gin.H{
 		"status":http.StatusOK,
 		"message":"Found expenses data",
 		"data":expense,
