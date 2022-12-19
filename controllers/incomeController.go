@@ -19,12 +19,14 @@ func PostIncome(c *gin.Context) {
 
 	query.AddIncome(&incomeBody)
 
-	Transaction(c)
+	var userStatus, totalAmount = TransactionCore(c)
 
 	c.JSON(http.StatusCreated, gin.H{
 		"status": http.StatusOK,
 		"message": "Successfuly created income",
 		"data": incomeBody,
+		"user_status": userStatus,
+		"total_amount": totalAmount,
 	})
 }
 
@@ -60,12 +62,14 @@ func UpdateIncome (c *gin.Context){
 
 	query.UpdateIncome(&income, incomeBody, id)
 
-	Transaction(c)
+	var userStatus, totalAmount = TransactionCore(c)
 	
 	c.JSON(http.StatusOK, gin.H{
 		"status": http.StatusOK,
 		"message":"Success updating",
 		"data":incomeBody,
+		"user_status":userStatus,
+		"total_amount":totalAmount,
 	})
 }
 
@@ -77,11 +81,13 @@ func DeleteIncome(c *gin.Context)  {
 
 	query.DeleteIncome(&income, id)
 
-	Transaction(c)
+	var userStatus, totalAmount = TransactionCore(c)
 
 	c.JSON(http.StatusOK, gin.H{
 		"status":http.StatusOK,
 		"message":"Income has successfuly deleted",
+		"user_status":userStatus,
+		"total_amount":totalAmount,
 	})
 }
 

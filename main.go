@@ -2,8 +2,8 @@ package main
 
 import (
 	"github.com/fajarhdev/go-mycash/initializers"
-	"github.com/fajarhdev/go-mycash/routes"
 	"github.com/fajarhdev/go-mycash/migrate"
+	"github.com/fajarhdev/go-mycash/routes"
 )
 
 func init() {

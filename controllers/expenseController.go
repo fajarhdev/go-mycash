@@ -19,12 +19,14 @@ func AddExpense(c *gin.Context) {
 
 	query.AddExpense(&expense)
 
-	Transaction(c)
+	var userStatus, totalAmount = TransactionCore(c)
 	
 	c.JSON(http.StatusCreated, gin.H{
 		"message":"Successfuly created income",
 		"status":http.StatusCreated,
 		"data":expense,
+		"user_status":userStatus,
+		"total_amount":totalAmount,
 	})
 }
 
@@ -57,12 +59,14 @@ func UpdateExpense(c *gin.Context)  {
 
 	query.UpdateExpense(&expense, expenseBody, id)
 
-	Transaction(c)
+	var userStatus, totalAmount = TransactionCore(c)
 
 	c.JSON(http.StatusOK, gin.H{
 		"status": http.StatusOK,
 		"message":"Success updating",
 		"data":expenseBody,
+		"user_status":userStatus,
+		"total_amount":totalAmount,
 	})
 }
 
@@ -73,10 +77,12 @@ func DeleteExpense(c *gin.Context)  {
 
 	query.DeleteExpense(&expense, id)
 
-	Transaction(c)
+	var userStatus, totalAmount = TransactionCore(c)
 	
 	c.JSON(http.StatusOK, gin.H{
 		"status":http.StatusOK,
 		"message":"Income has successfuly deleted",
+		"user_status":userStatus,
+		"total_amount":totalAmount,
 	})
 }

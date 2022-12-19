@@ -2,11 +2,12 @@ package initializers
 
 import (
 	"log"
+	"os"
 
 	"github.com/joho/godotenv"
 )
 
-// var port, userDB, passDB, host string
+var Port, UserDB, PassDB, Host string
 
 func LoadEnvVariables() {
 	err := godotenv.Load()
@@ -15,8 +16,8 @@ func LoadEnvVariables() {
 		log.Fatal("Error loading .env file")
 	}
 
-	// port = os.Getenv("PORT")
-	// userDB = os.Getenv("USER_DB")
-	// passDB = os.Getenv("PASSWORD_DB")
-	// host = os.Getenv("HOST")
+	Port = os.Getenv("PORT")
+	UserDB = os.Getenv("USER_DB")
+	PassDB = os.Getenv("PASSWORD_DB")
+	Host = os.Getenv("HOST")
 }
