@@ -9,6 +9,7 @@ import (
 
 var Port, UserDB, PassDB, Host string
 
+// for loading the env variables from system
 func LoadEnvVariables() {
 	err := godotenv.Load()
 

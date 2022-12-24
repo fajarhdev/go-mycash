@@ -8,8 +8,8 @@ import (
 )
 
 var DB *gorm.DB
-// var err error
 
+// connection database
 func ConnectToDB() {
 	var err error
 	dsn := "root:root@tcp(127.0.0.1:3306)/mycash?charset=utf8mb4&parseTime=True&loc=Local"

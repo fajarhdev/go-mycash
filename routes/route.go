@@ -5,6 +5,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// this function is for routing the endpoint
 func InitRouter() *gin.Engine{
 	r := gin.Default()
 	user := r.Group("/user")
@@ -19,23 +20,23 @@ func InitRouter() *gin.Engine{
 	
 	income := r.Group("/income")
 	{
-		income.POST("/:id", controllers.PostIncome)	// for add income transaction
+		income.POST("/:id", controllers.PostIncome)		// for add income transaction
 		income.GET("/:id", controllers.GetIncome)		// for fetch all the income transaction by specific user id
 		income.PUT("/:id", controllers.UpdateIncome)	// for updating specific income transaction
-		income.DELETE("/:id", controllers.DeleteIncome)
+		income.DELETE("/:id", controllers.DeleteIncome)	// for deleting specific income transaction
 	}
 
 	expense := r.Group("/expense")
 	{
-		expense.POST("/:id", controllers.AddExpense)
-		expense.GET("/:id", controllers.GetAllExpense)
-		expense.PUT("/:id", controllers.UpdateExpense)
-		expense.DELETE("/:id", controllers.DeleteExpense)
+		expense.POST("/:id", controllers.AddExpense)		// for add expense transaction
+		expense.GET("/:id", controllers.GetAllExpense)		// for fetch all the expense transaction by specific user id
+		expense.PUT("/:id", controllers.UpdateExpense)		// for updating specific expense transaction
+		expense.DELETE("/:id", controllers.DeleteExpense)	// for deleting specific expense transaction
 	}
 
 	transaction := r.Group("/trans")
 	{
-		transaction.POST("/:id", controllers.Transaction)
+		transaction.POST("/:id", controllers.Transaction)	// endpoint for triggering the transaction logic
 	}
 	return r
 }

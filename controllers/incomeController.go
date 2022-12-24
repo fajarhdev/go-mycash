@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// insert income
+// add income transaction to database with specific user
 func PostIncome(c *gin.Context) {
 
 	var incomeBody models.Income
@@ -30,7 +30,7 @@ func PostIncome(c *gin.Context) {
 	})
 }
 
-// get income
+// fetch all income transaction with specific user 
 func GetIncome (c *gin.Context){
 	var income []models.Income
 
@@ -49,7 +49,7 @@ func GetIncome (c *gin.Context){
 	})
 }
 
-// update income
+// update income transaction with specific income transaction and specific user
 func UpdateIncome (c *gin.Context){
 	var income models.Income
 	var incomeBody models.Income
@@ -73,7 +73,7 @@ func UpdateIncome (c *gin.Context){
 	})
 }
 
-// delete income
+// delete income transaction with specific income transaction and user 
 func DeleteIncome(c *gin.Context)  {
 	var income models.Income
 	

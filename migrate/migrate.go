@@ -10,6 +10,7 @@ func init() {
 	initializers.ConnectToDB()
 }
 
+// for migrating the schema
 func Migrate(){
 	initializers.DB.AutoMigrate(&models.User{})
 	initializers.DB.AutoMigrate(&models.Income{})

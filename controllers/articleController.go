@@ -8,6 +8,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+// fetch all articles
 func GetArticles(c *gin.Context){
 	var articles []models.Article
 

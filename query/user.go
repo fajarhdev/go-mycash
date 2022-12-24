@@ -5,12 +5,12 @@ import (
 	"github.com/fajarhdev/go-mycash/models"
 )
 
-//GetAllUsers Fetch all user data
+//function for query fetch all user in
 func GetAllUsers(user *[]models.User) {
 	initializers.DB.Find(&user)
 }
 
-// login user find
+//function for query select specific user in database with specific email for authentication
 func FindUser(user *models.User, email string ) int64 {
 	results := initializers.DB.Where("email = ?", email).First(&user)
 	return results.RowsAffected

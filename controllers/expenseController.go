@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-// adding the expenses
+// adding the expenses to database
 func AddExpense(c *gin.Context) {
 	var expense models.Expense
 
@@ -46,6 +46,7 @@ func GetAllExpense(c *gin.Context){
 	})
 }
 
+// updating expense with specific user and specific expense transaction
 func UpdateExpense(c *gin.Context)  {
 	var expense models.Expense
 	var expenseBody models.Expense
@@ -70,6 +71,7 @@ func UpdateExpense(c *gin.Context)  {
 	})
 }
 
+// deleting expense with specific user and specific expense transaction
 func DeleteExpense(c *gin.Context)  {
 	var expense models.Expense
 	
