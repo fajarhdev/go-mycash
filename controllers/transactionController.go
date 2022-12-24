@@ -39,8 +39,6 @@ func TransactionCore(c *gin.Context) (UserStatus string, TotalAmount int) {
 		UserID: id,
 	}
 
-	// fmt.Println(query.GetAllTransactionByUser(&transactions, id))
-
 	// post it to the db
 	if result := query.GetAllTransactionByUser(&transactions, id); result > 0 {
 		query.UpdateTransaction(&transactions, &transaction, id)

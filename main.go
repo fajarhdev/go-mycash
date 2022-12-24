@@ -4,12 +4,11 @@ import (
 	"github.com/fajarhdev/go-mycash/initializers"
 	"github.com/fajarhdev/go-mycash/migrate"
 	"github.com/fajarhdev/go-mycash/routes"
-	_ "github.com/qodrorid/godaemon"
 )
 
 func init() {
 	initializers.LoadEnvVariables()
-	// initializers.ConnectToDB()
+	initializers.ConnectToDB()
 	migrate.Migrate()
 }
 
